@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Агро-сектор — ИИ-решения</title>
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    /* ===== AGRO PAGE STYLES ===== */
+    .agro-hero {
+      background: linear-gradient(135deg, #1a3a1a 0%, #2d5a27 50%, #4a7c3f 100%);
+      color: #fff;
+      padding: 80px 20px 60px;
+      text-align: center;
+    }
+    .agro-hero h1 { font-size: 2.8rem; margin-bottom: 16px; }
+    .agro-hero p { font-size: 1.2rem; opacity: 0.85; max-width: 700px; margin: 0 auto 32px; }
+    .badge-agro {
+      display: inline-block;
+      background: #6abf4b;
+      color: #fff;
+      border-radius: 20px;
+      padding: 6px 18px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      margin-bottom: 24px;
+      letter-spacing: 1px;
+    }
+
+    /* PAIN SECTION */
+    .pain-section {
+      background: #fff8f0;
+      padding: 60px 20px;
+    }
+    .section-title {
+      text-align: center;
+      font-size: 2rem;
+      margin-bottom: 8px;
+      color: #1a1a1a;
+    }
+    .section-subtitle {
+      text-align: center;
+      color: #666;
+      margin-bottom: 48px;
+      font-size: 1.05rem;
+    }
+    .pain-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 24px;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+    .pain-card {
+      background: #fff;
+      border-left: 5px solid #e05a00;
+      border-radius: 12px;
+      padding: 24px 20px;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.07);
+      transition: transform 0.2s;
+    }
+    .pain-card:hover { transform: translateY(-4px); }
+    .pain-card .pain-icon { font-size: 2rem; margin-bottom: 12px; }
+    .pain-card h3 { font-size: 1.1rem; color: #c94a00; margin-bottom: 8px; }
+    .pain-card p { color: #555; font-size: 0.95rem; line-height: 1.6; }
+
+    /* TASKS SECTION */
+    .tasks-section {
+      background: #f0f7f0;
+      padding: 60px 20px;
+    }
+    .tasks-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 24px;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+    .task-card {
+      background: #fff;
+      border-left: 5px solid #4a9e3f;
+      border-radius: 12px;
+      padding: 24px 20px;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.07);
+      transition: transform 0.2s;
+    }
+    .task-card:hover { transform: translateY(-4px); }
+    .task-card .task-icon { font-size: 2rem; margin-bottom: 12px; }
+    .task-card h3 { font-size: 1.1rem; color: #2d6e22; margin-bottom: 8px; }
+    .task-card p { color: #555; font-size: 0.95rem; line-height: 1.6; }
+
+    /* PROGRAMS SECTION */
+    .programs-section {
+      background: #fff;
+      padding: 60px 20px;
+    }
+    .programs-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 32px;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+    .program-card {
+      background: linear-gradient(145deg, #f9fff5, #edfbe6);
+      border: 1px solid #c5e8b0;
+      border-radius: 16px;
+      padding: 28px 24px;
+      box-shadow: 0 4px 16px rgba(74,158,63,0.1);
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .program-card:hover { transform: translateY(-6px); box-shadow: 0 8px 28px rgba(74,158,63,0.18); }
+    .program-card .prog-icon { font-size: 2.4rem; margin-bottom: 16px; }
+    .program-card h3 { font-size: 1.25rem; color: #1a3a1a; margin-bottom: 10px; }
+    .program-card .prog-tag {
+      display: inline-block;
+      background: #d4f0c4;
+      color: #2d6e22;
+      border-radius: 20px;
+      padding: 3px 12px;
+      font-size: 0.78rem;
+      font-weight: 600;
+      margin-bottom: 14px;
+    }
+    .program-card p { color: #444; font-size: 0.95rem; line-height: 1.65; margin-bottom: 16px; }
+    .prog-features {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+    .prog-features li {
+      color: #555;
+      font-size: 0.9rem;
+      padding: 4px 0;
+      padding-left: 20px;
+      position: relative;
+    }
+    .prog-features li::before {
+      content: '✓';
+      color: #4a9e3f;
+      position: absolute;
+      left: 0;
+      font-weight: bold;
+    }
+
+    /* CTA */
+    .agro-cta {
+      background: linear-gradient(135deg, #2d5a27, #4a7c3f);
+      color: #fff;
+      text-align: center;
+      padding: 60px 20px;
+    }
+    .agro-cta h2 { font-size: 2rem; margin-bottom: 16px; }
+    .agro-cta p { font-size: 1.05rem; opacity: 0.85; margin-bottom: 32px; max-width: 600px; margin-left: auto; margin-right: auto; }
+    .btn-agro {
+      background: #6abf4b;
+      color: #fff;
+      padding: 14px 36px;
+      border-radius: 30px;
+      font-size: 1.05rem;
+      font-weight: 600;
+      text-decoration: none;
+      transition: background 0.2s, transform 0.2s;
+      display: inline-block;
+    }
+    .btn-agro:hover { background: #58a33b; transform: scale(1.04); }
+
+    /* STATS BAR */
+    .stats-bar {
+      background: #1a3a1a;
+      padding: 32px 20px;
+      display: flex;
+      justify-content: center;
+      gap: 60px;
+      flex-wrap: wrap;
+    }
+    .stat-item { text-align: center; color: #fff; }
+    .stat-item .stat-num { font-size: 2.2rem; font-weight: 700; color: #6abf4b; }
+    .stat-item .stat-label { font-size: 0.85rem; opacity: 0.7; margin-top: 4px; }
+  </style>
+</head>
+<body>
+  <nav class="navbar">
+    <div class="nav-logo">🧠 NeuralHub</div>
+    <div class="nav-links">
+      <a href="index.html">Главная</a>
+      <a href="networks.html">Нейросети</a>
+      <a href="agro.html" style="color:#6abf4b;font-weight:600">🌾 Агро</a>
+      <span id="nav-user-area"></span>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section class="agro-hero">
+    <div class="badge-agro">🌾 АГРО-СЕКТОР × ИИ</div>
+    <h1>Нейросети для агробизнеса</h1>
+    <p>Концепции ИИ-программ, которые решают реальные боли сельского хозяйства: от мониторинга полей до прогнозирования урожая</p>
+    <a href="#programs" class="btn-agro">Смотреть программы</a>
+  </section>
+
+  <!-- STATS -->
+  <div class="stats-bar">
+    <div class="stat-item">
+      <div class="stat-num">40%</div>
+      <div class="stat-label">Потери урожая из-за болезней</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-num">3x</div>
+      <div class="stat-label">Рост эффективности с ИИ</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-num">70%</div>
+      <div class="stat-label">Хозяйств без цифровых инструментов</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-num">$15B</div>
+      <div class="stat-label">Рынок AgriTech к 2030</div>
+    </div>
+  </div>
+
+  <!-- БОЛИ СЕКТОРА -->
+  <section class="pain-section">
+    <h2 class="section-title">🔴 Боли агро-сектора</h2>
+    <p class="section-subtitle">Ключевые проблемы, которые тормозят развитие сельского хозяйства</p>
+    <div class="pain-grid">
+      <div class="pain-card">
+        <div class="pain-icon">🌿</div>
+        <h3>Болезни и вредители</h3>
+        <p>Фермеры обнаруживают поражение культур слишком поздно — визуальный осмотр неэффективен на больших площадях. Потери достигают 40% урожая ежегодно.</p>
+      </div>
+      <div class="pain-card">
+        <div class="pain-icon">💧</div>
+        <h3>Неэффективный полив</h3>
+        <p>Избыточный или недостаточный полив из-за отсутствия данных о влажности почвы в реальном времени. Перерасход воды до 30–50%.</p>
+      </div>
+      <div class="pain-card">
+        <div class="pain-icon">🌦️</div>
+        <h3>Непредсказуемость погоды</h3>
+        <p>Климатические изменения делают стандартные агрокалендари устаревшими. Ошибки в планировании посева и уборки ведут к прямым финансовым потерям.</p>
+      </div>
+      <div class="pain-card">
+        <div class="pain-icon">📊</div>
+        <h3>Отсутствие аналитики</h3>
+        <p>Большинство хозяйств работают «на глазок» — без данных об истории поля, динамике урожайности и сравнительном анализе с соседними хозяйствами.</p>
+      </div>
+      <div class="pain-card">
+        <div class="pain-icon">💰</div>
+        <h3>Рост стоимости ресурсов</h3>
+        <p>Удобрения, топливо и пестициды дорожают, а хозяйства не знают точных норм внесения — вносят «про запас», что бьёт по рентабельности.</p>
+      </div>
+      <div class="pain-card">
+        <div class="pain-icon">👨‍🌾</div>
+        <h3>Дефицит агрономов</h3>
+        <p>Квалифицированных специалистов не хватает, а опыт старых агрономов уходит вместе с ними. Знания не оцифрованы и не масштабируются.</p>
+      </div>
+      <div class="pain-card">
+        <div class="pain-icon">🚜</div>
+        <h3>Износ техники</h3>
+        <p>Неплановые поломки техники в разгар сезона приводят к критическим задержкам. Нет системы предиктивного обслуживания на основе данных.</p>
+      </div>
+      <div class="pain-card">
+        <div class="pain-icon">📦</div>
+        <h3>Логистика и сбыт</h3>
+        <p>Фермеры не успевают продать урожай по выгодной цене из-за отсутствия инструментов прогнозирования рынка и поиска покупателей.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ЗАДАЧИ -->
+  <section class="tasks-section">
+    <h2 class="section-title">✅ Задачи, которые решает ИИ</h2>
+    <p class="section-subtitle">Конкретные функции нейросетевых программ для сельского хозяйства</p>
+    <div class="tasks-grid">
+      <div class="task-card">
+        <div class="task-icon">🛸</div>
+        <h3>Мониторинг полей с дронов</h3>
+        <p>Компьютерное зрение анализирует снимки с БПЛА и спутников, выявляет поражённые зоны, стрессы растений и аномалии за часы, а не недели.</p>
+      </div>
+      <div class="task-card">
+        <div class="task-icon">🔬</div>
+        <h3>Диагностика болезней</h3>
+        <p>Мобильное приложение с ИИ-камерой — фотографируешь лист, модель определяет болезнь с точностью 95% и предлагает схему лечения.</p>
+      </div>
+      <div class="task-card">
+        <div class="task-icon">🌡️</div>
+        <h3>Точное земледелие</h3>
+        <p>IoT-датчики в связке с нейросетью управляют поливом, внесением удобрений и температурой в теплицах в автоматическом режиме.</p>
+      </div>
+      <div class="task-card">
+        <div class="task-icon">📈</div>
+        <h3>Прогноз урожайности</h3>
+        <p>Модели машинного обучения на основе истории, погоды и данных с полей предсказывают урожай за 2–3 месяца с точностью ±8%.</p>
+      </div>
+      <div class="task-card">
+        <div class="task-icon">🤖</div>
+        <h3>Виртуальный агроном</h3>
+        <p>LLM-чат-бот, обученный на агрономических базах знаний, отвечает на вопросы фермеров 24/7 на русском языке с привязкой к региону.</p>
+      </div>
+      <div class="task-card">
+        <div class="task-icon">⚙️</div>
+        <h3>Предиктивное ТО техники</h3>
+        <p>Анализ телематики трактора и комбайна — ИИ предупреждает о поломке за 2–5 дней, чтобы успеть провести обслуживание до сезона.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- КОНЦЕПЦИИ ПРОГРАММ -->
+  <section class="programs-section" id="programs">
+    <h2 class="section-title">🚀 Концепции ИИ-программ</h2>
+    <p class="section-subtitle">Готовые идеи продуктов для разработки или инвестирования</p>
+    <div class="programs-grid">
+
+      <div class="program-card">
+        <div class="prog-icon">🌱</div>
+        <span class="prog-tag">Компьютерное зрение</span>
+        <h3>AgroVision — диагностика растений</h3>
+        <p>Мобильное приложение: фермер фотографирует культуру, нейросеть определяет болезнь, вредителя или дефицит питания и выдаёт рекомендации с учётом региона и сезона.</p>
+        <ul class="prog-features">
+          <li>CNN-модель на 50 000+ изображениях болезней</li>
+          <li>Офлайн-режим для полевой работы</li>
+          <li>История диагностики и карта очагов</li>
+          <li>Интеграция с магазинами агрохимии</li>
+        </ul>
+      </div>
+
+      <div class="program-card">
+        <div class="prog-icon">🛰️</div>
+        <span class="prog-tag">Геопространственный ИИ</span>
+        <h3>FieldSat — спутниковый мониторинг</h3>
+        <p>Платформа анализирует NDVI-индексы со спутников Sentinel/Landsat, строит карту здоровья полей и отправляет алерты при отклонениях за 48 часов.</p>
+        <ul class="prog-features">
+          <li>Обновление карты каждые 3–5 дней</li>
+          <li>Автоматические зоны управления</li>
+          <li>Экспорт в форматы для точного сева</li>
+          <li>Сравнение с прошлыми сезонами</li>
+        </ul>
+      </div>
+
+      <div class="program-card">
+        <div class="prog-icon">💧</div>
+        <span class="prog-tag">IoT + ML</span>
+        <h3>SmartIrrigation — умный полив</h3>
+        <p>Система на основе датчиков влажности почвы и ML-прогноза погоды автоматически управляет ирригацией, экономя до 35% воды и снижая трудозатраты.</p>
+        <ul class="prog-features">
+          <li>Интеграция с метеостанциями</li>
+          <li>Управление через смартфон / веб</li>
+          <li>Отчёты по расходу воды и экономии</li>
+          <li>Поддержка до 500 га на одну установку</li>
+        </ul>
+      </div>
+
+      <div class="program-card">
+        <div class="prog-icon">🤖</div>
+        <span class="prog-tag">LLM / RAG</span>
+        <h3>AgriBot — виртуальный агроном</h3>
+        <p>Чат-бот на базе GPT с RAG по агрономическим справочникам, ГОСТам и региональным базам. Отвечает на вопросы о севообороте, дозах удобрений, сроках обработок.</p>
+        <ul class="prog-features">
+          <li>База знаний 10 000+ агрономических статей</li>
+          <li>Привязка ответов к региону и культуре</li>
+          <li>Интеграция с Telegram и WhatsApp</li>
+          <li>Обучение на обратной связи от агрономов</li>
+        </ul>
+      </div>
+
+      <div class="program-card">
+        <div class="prog-icon">📊</div>
+        <span class="prog-tag">Предиктивная аналитика</span>
+        <h3>HarvestAI — прогноз урожая</h3>
+        <p>ML-платформа для руководителей хозяйств: прогнозирует урожайность по каждому полю на 60–90 дней вперёд, моделирует сценарии и помогает планировать логистику.</p>
+        <ul class="prog-features">
+          <li>Данные: погода, почва, история, NDVI</li>
+          <li>Сценарное моделирование «что если»</li>
+          <li>API для ERP и 1С-Агрофирма</li>
+          <li>Дашборд для инвесторов и банков</li>
+        </ul>
+      </div>
+
+      <div class="program-card">
+        <div class="prog-icon">🚜</div>
+        <span class="prog-tag">Predictive Maintenance</span>
+        <h3>MechAI — ТО сельхозтехники</h3>
+        <p>Телематический блок на технике собирает данные двигателя, трансмиссии и гидравлики. Нейросеть предсказывает отказ узлов за 3–7 дней до поломки.</p>
+        <ul class="prog-features">
+          <li>Поддержка John Deere, CLAAS, Ростсельмаш</li>
+          <li>Push-уведомления механику</li>
+          <li>Журнал ТО и история отказов</li>
+          <li>Рекомендации по запчастям с ценами</li>
+        </ul>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="agro-cta">
+    <h2>Хотите внедрить ИИ в своё хозяйство?</h2>
+    <p>Изучите существующие нейросети и подберите инструменты для автоматизации агробизнеса</p>
+    <a href="networks.html" class="btn-agro">Все нейросети →</a>
+  </section>
+
+  <footer>
+    <p>© 2026 NeuralHub. Все права защищены.</p>
+  </footer>
+
+  <script src="js/auth.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>
