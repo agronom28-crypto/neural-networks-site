@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Вход — NeuralHub</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="auth-page">
+  <div class="auth-container">
+    <div class="auth-logo">🧠 NeuralHub</div>
+    <h2>Вход в аккаунт</h2>
+
+    <div id="auth-error" class="auth-error" style="display:none"></div>
+
+    <form id="login-form">
+      <div class="form-group">
+        <label>Email</label>
+        <input type="email" id="login-email" placeholder="you@example.com" required>
+      </div>
+      <div class="form-group">
+        <label>Пароль</label>
+        <input type="password" id="login-password" placeholder="••••••••" required>
+      </div>
+      <button type="submit" class="btn-primary full-width">Войти</button>
+    </form>
+
+    <p class="auth-switch">Нет аккаунта? <a href="register.html">Зарегистрироваться</a></p>
+    <p class="auth-switch"><a href="index.html">← На главную</a></p>
+  </div>
+
+  <script src="js/auth.js"></script>
+  <script>
+    document.getElementById('login-form').addEventListener('submit', function(e) {
+      e.preventDefault();
+      const email = document.getElementById('login-email').value.trim();
+      const password = document.getElementById('login-password').value;
+      const result = authLogin(email, password);
+      if (result.success) {
+        window.location.href = 'index.html';
+      } else {
+        const err = document.getElementById('auth-error');
+        err.textContent = result.message;
+        err.style.display = 'block';
+      }
+    });
+  </script>
+</body>
+</html>

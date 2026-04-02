@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Нейросети — Каталог</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <nav class="navbar">
+    <div class="nav-logo">🧠 NeuralHub</div>
+    <div class="nav-links">
+      <a href="index.html">Главная</a>
+      <a href="networks.html">Нейросети</a>
+      <span id="nav-user-area"></span>
+    </div>
+  </nav>
+
+  <div class="page-container">
+    <h2 class="page-title">Каталог нейросетей</h2>
+
+    <div class="filter-bar">
+      <button class="filter-btn active" data-cat="all">Все</button>
+      <button class="filter-btn" data-cat="llm">Языковые</button>
+      <button class="filter-btn" data-cat="image">Изображения</button>
+      <button class="filter-btn" data-cat="audio">Аудио</button>
+      <button class="filter-btn" data-cat="video">Видео</button>
+      <button class="filter-btn" data-cat="code">Код</button>
+    </div>
+
+    <div class="networks-grid" id="networks-grid"></div>
+  </div>
+
+  <footer>
+    <p>© 2026 NeuralHub. Все права защищены.</p>
+  </footer>
+
+  <script src="js/auth.js"></script>
+  <script src="js/networks-data.js"></script>
+  <script src="js/networks.js"></script>
+</body>
+</html>
